@@ -35,8 +35,8 @@ app.use(cookieParser());
 // ================== DATABASE ==================
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log( "Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // ================== BASIC ROUTES ==================
 app.get("/", (req, res) => {
@@ -425,7 +425,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
   const userId = req.userID;
 
   try {
-    /* ---------- 1️⃣ Group + Auth ---------- */
+    /* ----------Group + Auth ---------- */
     const group = await Group.findById(groupId);
     if (!group) {
       return res.status(404).json({ message: "Group not found" });
@@ -436,7 +436,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
       return res.status(403).json({ message: "Not authorized" });
     }
 
-    /* ---------- 2️⃣ Fetch ALL expenses ---------- */
+    /* ---------- Fetch ALL expenses ---------- */
     const expenses = await Expense.find({ groupId })
       .populate("paidBy", "_id name")
       .populate("splitAmong", "_id name");
@@ -445,7 +445,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
       return res.json({ settlements: [] });
     }
 
-    /* ---------- 3️⃣ Balance Map ---------- */
+    /* ---------- Balance Map ---------- */
     const balanceMap = {};
 
     expenses.forEach((expense) => {
@@ -462,7 +462,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
       });
     });
 
-    /* ---------- 4️⃣ Creditors & Debtors ---------- */
+    /* ---------- Creditors & Debtors ---------- */
     const EPSILON = 0.001;
     const creditors = [];
     const debtors = [];
@@ -475,7 +475,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
       }
     });
 
-    /* ---------- 5️⃣ Minimize transactions ---------- */
+    /* ---------- Minimize transactions ---------- */
     const settlements = [];
     let i = 0,
       j = 0;
@@ -498,7 +498,7 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
       if (c.amount <= EPSILON) j++;
     }
 
-    /* ---------- 6️⃣ Attach user names ---------- */
+    /* ---------- Attach user names ---------- */
     const userIds = [...new Set(settlements.flatMap(s => [s.from, s.to]))];
 
     const users = await User.find(
@@ -533,7 +533,7 @@ app.get("/group/:groupId/net-balance", authMiddleware, async (req, res) => {
   const userId = req.userID;
 
   try {
-    /* ---------- 1️⃣ Group + Auth ---------- */
+    /* ----------  Group + Auth ---------- */
     const group = await Group.findById(groupId);
     if (!group) {
       return res.status(404).json({ message: "Group not found" });
@@ -544,12 +544,12 @@ app.get("/group/:groupId/net-balance", authMiddleware, async (req, res) => {
       return res.status(403).json({ message: "Not authorized" });
     }
 
-    /* ---------- 2️⃣ Fetch all expenses ---------- */
+    /* ----------  Fetch all expenses ---------- */
     const expenses = await Expense.find({ groupId });
 
     let balance = 0;
 
-    /* ---------- 3️⃣ Balance calculation ---------- */
+    /* ----------  Balance calculation ---------- */
     expenses.forEach((expense) => {
       const payerId = expense.paidBy.toString();
       const split = expense.amount / expense.splitAmong.length;

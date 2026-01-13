@@ -1,33 +1,33 @@
-# 💸 Splitwise (MERN Stack)
+# Splitwise
 
 ## 🛠 Tech Stack
--  ⚛️ React + React Router + React Hook Form + Tailwind CSS  
-- 🟢 Node.js + Express.js  
-- 🍃 MongoDB + Mongoose  
-- 🔐 JWT Authentication  
+-  React + React Router + React Hook Form + Tailwind CSS  
+- Node.js + Express.js  
+- MongoDB + Mongoose  
+- JWT Authentication  
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 ```text
 Splitwise/
 ├── client/     # Frontend
 ├── backend/    # Backend
 └── README.md
 ```
-## ⚙️ Installation & Setup
-### 1️⃣ Clone Repo
+## Installation & Setup
+### 1 Clone Repo
 ```
 git clone https://github.com/vedx07/SplitWise.git
 cd SplitWise
 ```
-### 2️⃣ Backend Setup
+### 2 Backend Setup
 ```
 cd backend
 npm install
 node server.js
 ```
-### 3️⃣ Frontend Setup
+### 3 Frontend Setup
 ```
 cd client
 npm install
@@ -41,7 +41,7 @@ JWT_SECRET = your_jwt_secret_key
 PORT = 3000
 ```
 
-## 🌐 Local URLs
+##  Local URLs
 ```
 🖥 Frontend: http://localhost:5173
 🔌 Backend: http://localhost:3000
