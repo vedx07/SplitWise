@@ -35,7 +35,7 @@ app.use(cookieParser());
 // ================== DATABASE ==================
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(() => console.log( "Connected to MongoDB"))
+  .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // ================== BASIC ROUTES ==================
@@ -499,12 +499,17 @@ app.get("/group/:groupId/settlement", authMiddleware, async (req, res) => {
     }
 
     /* ---------- Attach user names ---------- */
-    const userIds = [...new Set(settlements.flatMap(s => [s.from, s.to]))];
+   
+    const userIdsSet = new Set();
 
-    const users = await User.find(
-      { _id: { $in: userIds } },
-      { name: 1 }
-    );
+    settlements.forEach((s) => {
+      userIdsSet.add(s.from);
+      userIdsSet.add(s.to);
+    });
+
+    const userIds = Array.from(userIdsSet);
+
+    const users = await User.find({ _id: { $in: userIds } }, { name: 1 });
 
     const userMap = {};
     users.forEach((u) => {
@@ -571,9 +576,6 @@ app.get("/group/:groupId/net-balance", authMiddleware, async (req, res) => {
     return res.status(500).json({ message: "Failed to calculate net balance" });
   }
 });
-
-
-
 
 // ================== SERVER ==================
 app.listen(PORT, () => {
