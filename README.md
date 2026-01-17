@@ -8,7 +8,7 @@
 ![Node](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)
 
 A **Splitwise-inspired MERN stack application** that helps users split and manage shared expenses within groups.  
-Track expenses, calculate balances automatically, and clearly see **who owes whom** — making group finances simple, transparent, and stress-free 💰✨
+Track expenses, calculate balances automatically, and clearly see **who owes whom** — making group finances simple, transparent, and stress-free 
 
 ---
 
@@ -39,7 +39,8 @@ Track expenses, calculate balances automatically, and clearly see **who owes who
 - Mongoose  
 
 **Authentication**
-- JWT (JSON Web Tokens)  
+- JWT (JSON Web Tokens)
+- bcrypt (Password Hashing)
 
 ---
 
@@ -125,11 +126,6 @@ This project is licensed under the **MIT License**.
 **Author:** vedx07  
 **GitHub:** https://github.com/vedx07  
 **Project Link:** https://github.com/vedx07/SplitWise  
-
-✨ Built with MERN — Happy Splitting! 💸
-<footer align="center">
-
-Made with ❤️ and ☕ by **Vedant** for **Databytes**
-
-</footer>
+###
+Made with ❤️ and ☕ by **Vedant** for **DataByte, NIT Trichy**
 
