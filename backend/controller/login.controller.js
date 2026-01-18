@@ -24,8 +24,8 @@ export default async function loginController(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false, // true in production (HTTPS)
+      sameSite: "lax",//Sent on normal navigation (clicking a link)
+      secure: false, // now HTTP and HTTPS both works, true in production only (HTTPS)
     });
     res.json({ message: "Login success", token });
   } catch (err) {

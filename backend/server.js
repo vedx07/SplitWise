@@ -579,5 +579,5 @@ app.get("/group/:groupId/net-balance", authMiddleware, async (req, res) => {
 
 // ================== SERVER ==================
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -10,8 +10,7 @@ export default function authMiddleware(req, res, next) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userID = decoded.userId;
-    console.log("User ID from token:", req.userID);
-
+    // console.log("User ID from token:", req.userID);
     next(); 
   } catch (err) {
     return res.status(401).json({ message: "Unauthorized" });
